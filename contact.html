@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact | Aurora Borealis</title>
+  <link rel="stylesheet" href="css/contact.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+</head>
+<body>
+
+<!-- Header -->
+<header>
+  <div class="header-container">
+    <a href="index.html" class="logo">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="var(--primary)"/>
+      </svg>
+      Aurora<span>Borealis</span>
+    </a>
+    <nav>
+      <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="index.html#apropos">À propos</a></li>
+                        <li><a href="massage.html">Massage intuitif & Soin énergétique</a></li>
+        <li><a href="contact.html" class="contact-btn">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- Contact Section -->
+<section class="intro-accompagnement">
+  <div class="container">
+    <div class="intro-text">
+      <h1>Me Contacter</h1>
+      <p>Une question, une prise de rendez-vous</p>
+      <p class="accroche-detail">Je suis à votre écoute <span>🌸</span></p>
+    </div>
+  </div>
+</section>
+
+<section class="contact-form-section">
+  <div class="contact-container">
+    <form id="contactForm" class="contact-form">
+      <div id="formStatus" class="status-message"></div>
+      
+      <div class="form-group">
+        <label for="name">Nom</label>
+        <input type="text" id="name" name="name" class="form-control" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" class="form-control" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="subject">Sujet</label>
+        <input type="text" id="subject" name="subject" class="form-control" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" class="form-control" required></textarea>
+      </div>
+      
+      <button type="submit" class="submit-btn">
+        Envoyer <i class="fas fa-paper-plane"></i>
+      </button>
+    </form>
+    
+    <div class="contact-info">
+      <div class="contact-card">
+        <div class="contact-icon">
+          <i class="fas fa-envelope"></i>
+        </div>
+        <h3>Email</h3>
+        <a href="mailto:j.delarosa@outlook.fr">xxxxx@xxxx.xxx</a>
+      </div>
+      
+      <div class="contact-card">
+        <div class="contact-icon">
+          <i class="fas fa-phone-alt"></i>
+        </div>
+        <h3>Téléphone</h3>
+        <p>+33 0000000000</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const form = e.target;
+    const formData = new FormData(form);
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const statusMessage = document.getElementById('formStatus');
+    
+    // Show loading state
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = 'Envoi en cours <i class="fas fa-spinner fa-spin"></i>';
+    statusMessage.style.display = 'none';
+    
+    // Simulate form submission (in a real scenario, you would use a server-side script)
+    setTimeout(() => {
+      // This is where you would normally send the form data to your server
+      // For demonstration, we'll simulate a successful submission
+      const isSuccess = Math.random() > 0.2; // 80% chance of success for demo
+      
+      if (isSuccess) {
+        statusMessage.className = 'status-message success';
+        statusMessage.textContent = 'Merci ! Votre message a été envoyé avec succès. Je vous répondrai dès que possible.';
+        form.reset();
+      } else {
+        statusMessage.className = 'status-message error';
+        statusMessage.textContent = 'Une erreur est survenue lors de l\'envoi du message. Veuillez réessayer plus tard.';
+      }
+      
+      statusMessage.style.display = 'block';
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = 'Envoyer <i class="fas fa-paper-plane"></i>';
+      
+      // Scroll to status message
+      statusMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 1500);
+  });
+
+  // In a real implementation, you would replace the setTimeout with an actual fetch request:
+  /*
+  fetch('sendmail.php', {
+    method: 'POST',
+    body: formData
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.success) {
+      statusMessage.className = 'status-message success';
+      statusMessage.textContent = data.message;
+      form.reset();
+    } else {
+      statusMessage.className = 'status-message error';
+      statusMessage.textContent = data.message || 'Une erreur est survenue';
+    }
+    statusMessage.style.display = 'block';
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = 'Envoyer <i class="fas fa-paper-plane"></i>';
+  })
+  .catch(error => {
+    statusMessage.className = 'status-message error';
+    statusMessage.textContent = 'Erreur réseau. Veuillez réessayer.';
+    statusMessage.style.display = 'block';
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = 'Envoyer <i class="fas fa-paper-plane"></i>';
+  });
+  */
+</script>
+
+</body>
+</html>
