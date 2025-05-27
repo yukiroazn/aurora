@@ -3,65 +3,63 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aurora Borealis - Soins énergétiques et bien-être</title>
-  <link rel="stylesheet" href="css/styles.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <title>Aurora Borealis - Soins énergétiques et Massage Thérapeutique</title>
+  <link rel="stylesheet" href="css/index.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
 </head>
 <body>
-  <!-- Fixed Header -->
-  <header>
+<!-- Modern Fixed Header -->
+<header>
     <div class="header-container">
-      <a href="#" class="logo">Aurora<span>Borealis</span></a>
-      <nav>
-        <ul>
-          <li><a href="#">Accueil</a></li>
-          <li class="dropdown">
-            <a href="#">Préstations ▾</a>
-            <div class="dropdown-content">
-              <a href="#">Soins énergétiques</a>
-              <a href="#">Massages énergétiques</a>
-              <a href="#">Soins pour les animaux</a>
-            </div>
-          </li>
-          <li><a href="#apropos">À propos</a></li>
-          <li><a href="#" class="contact-btn">Contact</a></li>
-        </ul>
-      </nav>
+        <a href="#" class="logo">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="var(--primary)"/>
+            </svg>
+            Aurora<span>Borealis</span>
+        </a>
+        <nav>
+            <ul>
+                <li><a href="#">Accueil</a></li>
+                <li><a href="massage.html">Massage intuitif & Soin énergétique</a></li>
+                <li><a href="#apropos">À propos</a></li>
+                <li><a href="#" class="contact-btn">Contact</a></li>
+            </ul>
+        </nav>
     </div>
-  </header>
+</header>
 
-<!-- Modern Carousel Section -->
+<!-- Modern Carousel HTML -->
 <div class="modern-carousel">
   <div class="carousel-slides">
     <div class="carousel-slide active" style="background-image: url('images/1.jpg')">
-      <div class="slide-overlay"></div>
       <div class="slide-content">
-        <h2>Soins Énergétiques</h2>
-        <p>Découvrez des soins énergétiques personnalisés pour rééquilibrer votre corps et votre esprit.</p>
-        <a href="#contact" class="rdv-btn">Prendre un RDV</a>
+        <h2>Massage Intuitif</h2>
+        <p>Découvrez des soins énergétiques personnalisés qui harmonisent votre corps et votre esprit pour un bien-être profond.</p>
       </div>
     </div>
     <div class="carousel-slide" style="background-image: url('images/2.jpg')">
-      <div class="slide-overlay"></div>
       <div class="slide-content">
         <h2>Massages Énergétiques</h2>
-        <p>Laissez-vous emporter par mes massages uniques qui harmonisent énergie et relaxation profonde.</p>
-        <a href="#contact" class="rdv-btn">Prendre un RDV</a>
-      </div>
-    </div>
-    <div class="carousel-slide" style="background-image: url('images/3.jpg')">
-      <div class="slide-overlay"></div>
-      <div class="slide-content">
-        <h2>Soins pour Animaux</h2>
-        <p>Des soins énergétiques spécialement adaptés pour le bien-être de vos compagnons à quatre pattes.</p>
-        <a href="#contact" class="rdv-btn">Prendre un RDV</a>
+        <p>Une expérience sensorielle unique combinant techniques ancestrales et approche contemporaine.</p>
       </div>
     </div>
   </div>
-  <button class="carousel-btn prev" aria-label="Slide précédente">‹</button>
-  <button class="carousel-btn next" aria-label="Slide suivante">›</button>
-  <div class="carousel-dots"></div>
+  <button class="carousel-btn prev" aria-label="Précédent">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M15 18l-6-6 6-6"/>
+    </svg>
+  </button>
+  <button class="carousel-btn next" aria-label="Suivant">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M9 18l6-6-6-6"/>
+    </svg>
+  </button>
+  <div class="carousel-dots">
+    <button class="active" aria-label="Slide 1"></button>
+    <button aria-label="Slide 2"></button>
+  </div>
 </div>
 
   <!-- About Section -->
@@ -132,18 +130,6 @@ document.addEventListener('DOMContentLoaded', function () {
   function stopAutoplay() {
     clearInterval(autoplayInterval);
   }
-
-  // Create dots
-  slides.forEach((_, index) => {
-    const dot = document.createElement('button');
-    dot.setAttribute('aria-label', `Slide ${index + 1}`);
-    dot.addEventListener('click', () => {
-      goToSlide(index);
-      stopAutoplay();
-      startAutoplay();
-    });
-    dotsContainer.appendChild(dot);
-  });
 
   // Event listeners
   prevBtn.addEventListener('click', () => {

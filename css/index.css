@@ -1,12 +1,11 @@
-
 :root {
-    --primary: #6a4c93;
-    --primary-light: #9c7fc5;
-    --primary-dark: #3a1d63;
-    --secondary: #f8bbd0;
-    --text: #333;
-    --text-light: #666;
-    --bg: #f9f5ff;
+    --primary: #f67280;           /* corail doux */
+    --primary-light: #f8b195;     /* rose pastel */
+    --primary-dark: #5e3c58;      /* violet prune */
+    --secondary: #fbc4ab;         /* pêche clair */
+    --text: #5e3c58;
+    --text-light: #8c6e82;
+    --bg: #fff7f4;
     --white: #ffffff;
 }
 
@@ -31,74 +30,89 @@ body {
     padding: 0 20px;
 }
 
-/* Header */
+/* Modern Header */
 header {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    background-color: var(--white);
-    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
     z-index: 1000;
-    padding: 15px 0;
+    padding: 12px 0;
+    transition: all 0.3s ease;
 }
 
 .header-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 30px;
 }
 
 .logo {
-    font-size: 28px;
+    font-size: 24px;
     font-weight: 700;
     color: var(--primary-dark);
     text-decoration: none;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .logo span {
     color: var(--primary);
+    transition: transform 0.3s ease;
+}
+
+.logo:hover span {
+    transform: rotate(15deg);
+    display: inline-block;
 }
 
 nav ul {
     display: flex;
     list-style: none;
+    gap: 15px;
 }
 
 nav ul li {
     position: relative;
-    margin-left: 30px;
 }
 
 nav ul li a {
     text-decoration: none;
     color: var(--text);
     font-weight: 500;
-    transition: all 0.3s;
-    padding: 10px 0;
-    display: block;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    padding: 8px 12px;
+    border-radius: 8px;
     position: relative;
-}
-
-nav ul li a:after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: 0;
-    left: 0;
-    background-color: var(--primary);
-    transition: width 0.3s;
-}
-
-nav ul li a:hover:after {
-    width: 100%;
 }
 
 nav ul li a:hover {
     color: var(--primary);
+    background: rgba(var(--primary-rgb), 0.1);
+}
+
+nav ul li a.contact-btn {
+    background: var(--primary);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 8px;
+    margin-left: 10px;
+}
+
+nav ul li a.contact-btn:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(var(--primary-rgb), 0.2);
 }
 
 /* Dropdown Menu */
@@ -144,32 +158,33 @@ nav ul li a:hover {
 
 /* Contact Button */
 .contact-btn {
-    background-color: var(--primary);
+    background: linear-gradient(to right, var(--primary-light), var(--primary));
     color: var(--white) !important;
     padding: 12px 25px !important;
     border-radius: 30px;
     transition: all 0.3s;
     margin-left: 15px;
-    box-shadow: 0 4px 15px rgba(106, 76, 147, 0.3);
+    box-shadow: 0 4px 15px rgba(246, 114, 128, 0.3);
+    border: none;
 }
 
 .contact-btn:hover {
-    background-color: var(--primary-dark);
+    background: linear-gradient(to right, var(--primary), var(--primary-dark));
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(106, 76, 147, 0.4);
+    box-shadow: 0 6px 20px rgba(246, 114, 128, 0.4);
 }
 
 .contact-btn:after {
     display: none;
 }
 
-/* Modern Carousel Styles */
+/* Modern Carousel */
 .modern-carousel {
   position: relative;
-  max-width: 100%;
+  width: 100%;
   height: 90vh;
+  max-height: 900px;
   overflow: hidden;
-  margin-bottom: 40px;
 }
 
 .carousel-slides {
@@ -187,131 +202,160 @@ nav ul li a:hover {
   background-position: center;
   background-repeat: no-repeat;
   opacity: 0;
-  transition: opacity 1s ease-in-out;
+  transition: all 1.2s cubic-bezier(0.65, 0, 0.35, 1);
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   padding: 20px;
+  will-change: transform, opacity;
 }
 
 .carousel-slide.active {
   opacity: 1;
 }
 
-.slide-overlay {
+.carousel-slide::before {
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.4);
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.6) 0%,
+    rgba(0, 0, 0, 0.3) 50%,
+    rgba(0, 0, 0, 0.6) 100%
+  );
+  z-index: 1;
 }
 
 .slide-content {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   color: white;
   max-width: 800px;
-  padding: 30px;
+  padding: 40px;
   animation: fadeInUp 1s ease-out;
 }
 
 .slide-content h2 {
-  font-size: 3.5rem;
-  margin-bottom: 20px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  color: var(--white);
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  margin-bottom: 25px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .slide-content p {
-  font-size: 1.5rem;
-  margin-bottom: 30px;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  margin-bottom: 40px;
+  line-height: 1.6;
+  font-weight: 300;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
 }
 
 .rdv-btn {
   display: inline-block;
-  background-color: var(--primary);
+  background: linear-gradient(135deg, var(--primary-light), var(--primary-dark));
   color: white;
-  padding: 15px 35px;
+  padding: 18px 45px;
   border-radius: 50px;
   text-decoration: none;
   font-weight: 600;
-  font-size: 1.2rem;
-  transition: all 0.3s ease;
-  border: 2px solid var(--primary);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  font-size: 1.1rem;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  border: 2px solid transparent;
+  box-shadow: 0 8px 25px rgba(var(--primary-rgb), 0.3);
+  position: relative;
+  overflow: hidden;
 }
 
 .rdv-btn:hover {
-  background-color: transparent;
-  color: white;
   transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 12px 30px rgba(var(--primary-rgb), 0.4);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.rdv-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: 0.5s;
+}
+
+.rdv-btn:hover::before {
+  left: 100%;
 }
 
 .carousel-btn {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.15);
   color: white;
   border: none;
-  font-size: 2.5rem;
-  width: 60px;
-  height: 60px;
+  font-size: 2rem;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
   cursor: pointer;
   z-index: 10;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(5px);
+  transition: all 0.4s ease;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  opacity: 0.8;
 }
 
 .carousel-btn:hover {
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.25);
   transform: translateY(-50%) scale(1.1);
+  opacity: 1;
 }
 
-.carousel-btn.prev {
-  left: 30px;
-}
-
-.carousel-btn.next {
-  right: 30px;
-}
+.carousel-btn.prev { left: 5%; }
+.carousel-btn.next { right: 5%; }
 
 .carousel-dots {
   position: absolute;
-  bottom: 30px;
+  bottom: 40px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  gap: 10px;
-  z-index: 10;
+  gap: 12px;
+  z-index: 5;
 }
 
-.carousel-dots .dot {
+.carousel-dots button {
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.5);
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  background-color: transparent;
   cursor: pointer;
   transition: all 0.3s ease;
+  padding: 0;
 }
 
-.carousel-dots .dot.active {
-  background-color: var(--primary);
-  transform: scale(1.2);
+.carousel-dots button.active {
+  background-color: white;
+  border-color: white;
+  transform: scale(1.3);
 }
 
+/* Animation for slide content */
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(40px);
   }
   to {
     opacity: 1;
@@ -319,38 +363,34 @@ nav ul li a:hover {
   }
 }
 
-.carousel-dots {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 10px;
-  z-index: 5;
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .modern-carousel {
+    height: 80vh;
+  }
+
+  .slide-content {
+    padding: 20px;
+  }
+
+  .carousel-btn {
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+  }
+
+  .carousel-btn.prev { left: 3%; }
+  .carousel-btn.next { right: 3%; }
+
+  .carousel-dots {
+    bottom: 20px;
+  }
 }
-
-.carousel-dots button {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  border: none;
-  background-color: rgba(255, 255, 255, 0.5);
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.carousel-dots button.active {
-  background-color: var(--primary);
-  transform: scale(1.2);
-}
-
-
-
 
 /* About Section */
 .about-section {
     padding: 100px 0;
-    position: relative;
+    background: linear-gradient(to bottom right, #fff7f4, #fbc4ab);
 }
 
 .about-grid {
@@ -454,138 +494,29 @@ nav ul li a:hover {
 
 /* Responsive */
 @media (max-width: 992px) {
-  .about-grid {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-
-  .about-image {
-    height: 400px;
-  }
-
-  .carousel-inner {
-    height: 400px;
-  }
-
-  .carousel-caption h1 {
-    font-size: 2.5rem;
-  }
-
-  .modern-carousel {
-    height: 70vh;
-  }
-
-  .slide-content h2 {
-    font-size: 2.8rem;
-  }
-
-  .slide-content p {
-    font-size: 1.3rem;
-  }
+  .about-grid { grid-template-columns: 1fr; gap: 40px; }
+  .about-image { height: 400px; }
+  .modern-carousel { height: 70vh; }
+  .slide-content h2 { font-size: 2.8rem; }
+  .slide-content p { font-size: 1.3rem; }
 }
 
 @media (max-width: 768px) {
-  .header-container {
-    flex-direction: column;
-    padding: 10px;
-  }
-
-  nav ul {
-    margin-top: 15px;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  nav ul li {
-    margin: 5px 10px;
-  }
-
-  .contact-btn {
-    margin-left: 0;
-  }
-
-  .about-section {
-    padding: 60px 0;
-  }
-
-  .carousel,
-  .modern-carousel {
-    height: 60vh;
-  }
-
-  .carousel-inner {
-    height: 350px;
-  }
-
-  .carousel-caption h1 {
-    font-size: 2rem;
-  }
-
-  .carousel-caption h3,
-  .slide-content h2 {
-    font-size: 2.2rem;
-  }
-
-  .carousel-caption p,
-  .slide-content p {
-    font-size: 1.1rem;
-  }
-
-  .rdv-btn {
-    padding: 12px 25px;
-    font-size: 1rem;
-  }
-
-  .carousel-control,
-  .carousel-btn {
-    width: 50px;
-    height: 50px;
-    font-size: 2rem;
-  }
+  .header-container { flex-direction: column; padding: 10px; }
+  nav ul { margin-top: 15px; flex-wrap: wrap; justify-content: center; }
+  nav ul li { margin: 5px 10px; }
+  .contact-btn { margin-left: 0; }
+  .about-section { padding: 60px 0; }
+  .modern-carousel { height: 60vh; }
+  .rdv-btn { padding: 12px 25px; font-size: 1rem; }
 }
 
 @media (max-width: 576px) {
-  .about-image {
-    height: 300px;
-  }
-
-  .carousel,
-  .modern-carousel {
-    height: 50vh;
-  }
-
-  .carousel-inner {
-    height: 250px;
-  }
-
-  .carousel-caption h1,
-  .slide-content h2 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-  }
-
-  .carousel-caption h3 {
-    margin-bottom: 5px;
-  }
-
-  .carousel-caption p,
-  .slide-content p {
-    font-size: 1rem;
-    margin-bottom: 20px;
-  }
-
-  .carousel-control,
-  .carousel-btn {
-    width: 40px;
-    height: 40px;
-    font-size: 1.5rem;
-  }
-
-  .carousel-btn.prev {
-    left: 15px;
-  }
-
-  .carousel-btn.next {
-    right: 15px;
-  }
+  .about-image { height: 300px; }
+  .modern-carousel { height: 50vh; }
+  .slide-content h2 { font-size: 1.5rem; margin-bottom: 10px; }
+  .slide-content p { font-size: 1rem; margin-bottom: 20px; }
+  .carousel-btn { width: 40px; height: 40px; font-size: 1.5rem; }
+  .carousel-btn.prev { left: 15px; }
+  .carousel-btn.next { right: 15px; }
 }
